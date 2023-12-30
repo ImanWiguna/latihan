@@ -25,6 +25,7 @@ Route::controller(AuthController::class)->group(function (){
     Route::get('login', 'login')->name('login');
     Route::post('login','loginAction')->name('login.action');
     
+    // logout
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
@@ -33,7 +34,7 @@ Route::middleware('auth')->group(function() {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::controller(ProductController::class)->group(function(){
+        Route::controller(ProductController::class)->prefix('products')->group(function () {
         Route::get('', 'index')->name('products');
         Route::get('create', 'create')->name('products.create');
         Route::post('store', 'store')->name('products.store');
@@ -43,10 +44,16 @@ Route::middleware('auth')->group(function() {
         Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
     });
 
-    Route::controller(AuthController::class)->group(function (){
-        Route::get('profile', 'profile')->name('profile');
-        Route::post('profile','profileUpdate')->name('profile.update');
-    
-
+    Route::controller(AuthController::class)->prefix('users')->group(function () {
+        Route::get('', 'index')->name('users');
+        Route::get('create', 'create')->name('users.create');
+        Route::post('store', 'store')->name('users.store');
+        Route::get('show/{id}', 'show')->name('users.show');
+        Route::get('edit/{id}', 'edit')->name('users.edit');
+        Route::put('edit/{id}', 'update')->name('users.update');
+        Route::delete('destroy/{id}', 'destroy')->name('users.destroy');
     });
+ 
+    Route::get('/profile', [App\Http\Controllers\AuthController::class, 'profile'])->name('profile');
+    Route::get('/profile.update', [App\Http\Controllers\AuthController::class, 'profileUpdate'])->name('profile.update');
 });

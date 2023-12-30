@@ -27,7 +27,7 @@ class ProductController extends Controller
 
         Product::create([
             'title' => $request->title,
-            'sku' => $request->sku,
+            'product_code' => $request->product_code,
             'price' => $request->price,
             'description' => $request->description,
             'image_uri' => $imagePath
@@ -50,8 +50,20 @@ class ProductController extends Controller
 
     public function update(Request $request, string $id){
         $product = Product::findOrFail($id);
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imageName = time().'.'.$request->image->extension();
+        $imagePath = 'images/'.$imageName;
+        $request->image->move(public_path('images'), $imageName);
 
-        $product->update($request->all());
+        Product::where('id', $id)->update([
+            'title' => $request->title,
+            'product_code' => $request->product_code,
+            'price' => $request->price,
+            'description' => $request->description,
+            'image_uri' => $imagePath
+        ]);
         
         return redirect()->route('products')->with('success', 'product updated successfully');
     }

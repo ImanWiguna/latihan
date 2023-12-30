@@ -57,6 +57,7 @@ class AuthController extends Controller
         return redirect()->route('dashboard');
     }
   
+    // logout
     public function logout(Request $request)
     {
         Auth::guard('web')->logout();
@@ -85,5 +86,61 @@ class AuthController extends Controller
         ]);
 
         return view('profile');
+    }
+
+    // user Management
+    public function index(){
+        $user = User::orderBy('created_at', 'DESC')->get();
+
+        return view('users.index', compact('user'));
+    }
+
+    public function create(){
+        return view('users.create');
+    }
+
+    public function store(Request $request){
+   
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => $request->level,
+        ]);
+
+        return redirect()->route('users')->with('success', 'user added successfully');
+    }
+
+    public function show(string $id){
+        $user = User::findOrFail($id);
+        
+        return view('users.show', compact('user'));
+    }
+
+    public function edit(string $id){
+        $user = User::findOrFail($id);
+        
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(Request $request, string $id){
+        $user = User::findOrFail($id);
+   
+        User::where('id', $id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'level' => $request->level,
+          
+        ]);
+        
+        return redirect()->route('users')->with('success', 'user updated successfully');
+    }
+
+    public function destroy(string $id){
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect()->route('users')->with('success', 'user deleted Successfully');
     }
 }

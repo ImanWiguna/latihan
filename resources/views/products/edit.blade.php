@@ -14,7 +14,7 @@
                 <input type="text" name="title" value="{{$product->title}}"  class="form-control">
             </div>
             <div class="col">
-                <input type="text" name="sku" value="{{$product->sku}}"  class="form-control">
+                <input type="text" name="product_code" value="{{$product->product_code}}"  class="form-control">
             </div>
         </div>
         <div class="row mb-3">

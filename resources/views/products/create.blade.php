@@ -13,7 +13,7 @@
                 <input type="text" name="title" placeholder="Masukan nama produk" class="form-control">
             </div>
             <div class="col">
-                <input type="text" name="sku" placeholder="Masukan sku produk" class="form-control">
+                <input type="text" name="product_code" placeholder="Masukan sku produk" class="form-control">
             </div>
         </div>
         <div class="row mb-3">

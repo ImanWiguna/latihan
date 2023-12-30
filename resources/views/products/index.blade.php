@@ -33,7 +33,7 @@
                     <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
                         <td class="align-middle">{{ $rs->title }}</td>
-                        <td class="align-middle">{{ $rs->sku }}</td>
+                        <td class="align-middle">{{ $rs->product_code }}</td>
                         <td class="align-middle">{{ $rs->price }}</td>
                         <td class="align-middle">{{ $rs->description }}</td>
                         <td class="align-middle"><img src="{{ asset($rs->image_uri) }}" alt="{{ $rs->image_uri }}"></td>

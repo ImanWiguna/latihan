@@ -16,10 +16,17 @@
                                 <i class="me-3 fa fa-user" aria-hidden="true"></i><span
                                     class="hide-menu">Profile</span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                href="{{ route('products') }}" aria-expanded="false"><i class="me-3 fa fa-table"
-                                    aria-hidden="true"></i><span class="hide-menu">Produk</span></a>
+                     
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" 
+                        href="{{ route('products') }}" aria-expanded="false"><i class="me-3 fa fa-table"
+                        aria-hidden="true"></i><span class="hide-menu">Produk</span></a>
                         </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" 
+                        href="{{ route('users') }}" aria-expanded="false"><i class="me-3 fa fa-table"
+                        aria-hidden="true"></i><span class="hide-menu">User</span></a>
+                        </li>
+                     
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{{route( 'logout' )}}" aria-expanded="false"><i class="me-3 fa fa-table"
                                     aria-hidden="true"></i><span class="hide-menu">Logout</span></a>
